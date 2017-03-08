@@ -95,7 +95,21 @@ class TomcatJasper extends Tomcat {
     @Input
     @Optional
     Boolean addWebXmlMappings
+  
+    @Input
+    @Optional 
+    String  webapp
 
+    @Input
+    @Optional 
+    String webinc
+
+    @Input
+    @Optional 
+    String webxml
+
+    
+    
     @TaskAction
     void start() {
         logger.info "Running Jasper for ${getProject()}"
@@ -111,7 +125,9 @@ class TomcatJasper extends Tomcat {
                                 'compilerTargetVM': getCompilerTargetVM(), 'poolingEnabled': getPoolingEnabled(),
                                 'errorOnUseBeanInvalidClassAttribute': getErrorOnUseBeanInvalidClassAttribute(),
                                 'genStringAsCharArray': getGenStringAsCharArray(), 'ieClassId': getIeClassId(),
-                                'javaEncoding': getJavaEncoding(), 'trimSpaces': getTrimSpaces(), 'xpoweredBy': getXpoweredBy()]
+                                'javaEncoding': getJavaEncoding(), 'trimSpaces': getTrimSpaces(), 'xpoweredBy': getXpoweredBy(),
+                                'webxml': getWebxml(), 'webinc': getWebinc(), 'webapp': getWebapp()
+        ]
         if(getValidateXml()) {
             jasperAttributes['validateXml'] = getValidateXml()
         }
